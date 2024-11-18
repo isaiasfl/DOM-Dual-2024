@@ -6,7 +6,7 @@ Selecciona el elemento `h1` por su ID.
 
 ### Ejercicio 2:
 
-Selecciona todos los párrafos con la clase "parrafo" dentro del `contenedorSecundario`.
+Selecciona todos los párrafos con la clase "parrafo" dentro del `contenedorPrincipal`.
 
 ### Ejercicio 3:
 
