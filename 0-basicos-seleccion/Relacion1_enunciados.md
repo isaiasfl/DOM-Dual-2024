@@ -6,7 +6,11 @@ Selecciona el elemento `h1` por su ID.
 
 ### Ejercicio 2:
 
+<<<<<<< HEAD
 Selecciona todos los párrafos con la clase "parrafo" dentro del `contenedorPrincipal`.
+=======
+Selecciona todos los párrafos con la clase "parrafo" dentro del `contenedorSecundario`.
+>>>>>>> backend-a
 
 ### Ejercicio 3:
 
