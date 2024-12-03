@@ -2,6 +2,8 @@ import Carrito from "./components/Carrito";
 
 // crear instancias carrito // cargar_carrito_localStorage
 const carrito = new Carrito();
+carrito.cargarLocalStorage();
+console.log("carrito--", carrito);
 
 // declaración de funciones
 
@@ -26,6 +28,8 @@ const renderListaCarrito = () => {
   // pongo el total
   console.log(carrito.calcularTotal());
   totalCarrito.textContent = carrito.calcularTotal();
+  // guardo en localsStorage
+  carrito.guardarLocalStorage();
 };
 
 const agregarProductoHandler = (event) => {
@@ -46,7 +50,26 @@ const agregarProductoHandler = (event) => {
   event.target.reset();
 };
 
-function renderCarrito() {
+const manejarAccionesHandler = (event) => {
+  const indice = Number(event.target.dataset.id);
+  if (event.target.classList.contains("btn-borrar")) {
+    carrito.borrarProducto(indice);
+    renderListaCarrito();
+  }
+  if (event.target.classList.contains("btn-editar")) {
+    ///editaremos
+    const newCantidad = Number(
+      prompt("Introduce la nueva cantidad", carrito.productos[indice].cantidad)
+    );
+    // una vez tengo la nueva cantidad, modifico el carrito de productos
+    if (newCantidad && newCantidad > 0) {
+      carrito.editarProducto(indice, newCantidad);
+      renderListaCarrito();
+    }
+  }
+};
+
+function init() {
   // selecciono el APP.
   const app = document.getElementById("app");
   const tituloH1 = document.createElement("h1");
@@ -71,6 +94,13 @@ function renderCarrito() {
   document
     .getElementById("form-producto")
     .addEventListener("submit", agregarProductoHandler);
+
+  document
+    .getElementById("lista-productos")
+    .addEventListener("click", manejarAccionesHandler);
+
+  // simpre una vez que cargue la página, renderizo el carrito
+  renderListaCarrito();
 }
 
-renderCarrito();
+init();
